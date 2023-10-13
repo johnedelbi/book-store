@@ -34,8 +34,11 @@ const booksController = {
         if (bookIsExist) {
             res.json(bookIsExist);
         } else {
-            res.send('book not found');
-        }
+        res.status(404).render('404',{
+        message: 'Book not found',
+        linkText:'back to Home',
+        link:'http://localhost:3007/api/books'
+    });        }
     },
     addNewBook: (req, res) => {
         const { name, author } = req.body;
@@ -52,8 +55,11 @@ const booksController = {
             updateBookById(books, id, name, author);
             res.json(books);
         } else {
-            res.send('book not found');
-        }
+        res.status(404).render('404',{
+        message: 'Book not found',
+        linkText:'back to Home',
+        link:'http://localhost:3007/api/books'
+    });        }
     },
     deleteBook: (req, res) => {
         const { id } = req.params;
@@ -62,8 +68,11 @@ const booksController = {
             books = books.filter((book) => book.id !== id);
             res.json(books);
         } else {
-            res.send('book is not exist');
-        }
+        res.status(404).render('404',{
+        message: 'book not found',
+        linkText:'back to Home',
+        link:'http://localhost:3007/api/books'
+    });        }
     }
 };
 
